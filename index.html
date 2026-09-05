@@ -3,220 +3,1101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>✨ Hot Genes! ✨</title>
+
+<title>CHAT PROJECT — HOT GENES</title>
 
 <style>
-body{
-    margin:0;
-    font-family: "Comic Sans MS", cursive;
-    background:#ffb6d9;
-    background-image:
-    radial-gradient(white 2px, transparent 2px),
-    radial-gradient(#ff69b4 2px, transparent 2px);
-    background-size:40px 40px;
-    color:#ff1493;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-header{
-    text-align:center;
-    padding:30px;
-    background:linear-gradient(#ff69b4,#ffb6d9);
-    border-bottom:8px solid hotpink;
+html {
+    scroll-behavior: smooth;
 }
 
-h1{
-    font-size:60px;
-    margin:0;
-    text-shadow:3px 3px white;
+body {
+    background: #000;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
 }
 
-.slogan{
-    font-size:22px;
+/* =========================================================
+   FUNDO
+========================================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.65)),
+        url("fundo.jpg") center / cover no-repeat;
+    z-index: -3;
 }
 
-.menu{
-    background:#ff69b4;
-    padding:15px;
-    text-align:center;
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 3px,
+            rgba(255,255,255,.025) 4px
+        );
+    pointer-events: none;
+    z-index: 999;
 }
 
-.menu a{
-    color:white;
-    text-decoration:none;
-    margin:10px;
-    font-weight:bold;
+/* =========================================================
+   TOPO
+========================================================= */
+
+header {
+    width: 100%;
+    padding: 15px 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(0,0,0,.82);
+    border-bottom: 1px solid rgba(255,255,255,.4);
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
 }
 
-.container{
-    width:90%;
-    margin:auto;
+.logo {
+    height: 65px;
+    width: auto;
 }
 
-.caixa{
-    background:white;
-    margin:20px 0;
-    padding:20px;
-    border:4px solid hotpink;
-    border-radius:15px;
-    box-shadow:0 0 15px pink;
+.status {
+    font-family: "Press Start 2P", monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
 }
 
-.membros{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:15px;
+/* =========================================================
+   MENU
+========================================================= */
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 10px;
+    padding: 14px;
+
+    background: rgba(0,0,0,.88);
+    border-bottom: 1px solid #fff;
+
+    position: sticky;
+    top: 95px;
+    z-index: 90;
 }
 
-.card{
-    background:#ffe4f1;
-    padding:15px;
-    text-align:center;
-    border:3px dashed hotpink;
+.nav-button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: .25s ease;
 }
 
-.card h3{
-    margin:5px;
+.nav-button img {
+    height: 38px;
+    width: auto;
+    display: block;
+
+    filter:
+        drop-shadow(0 0 3px white)
+        drop-shadow(0 0 10px rgba(255,255,255,.25));
+
+    transition: .25s ease;
 }
 
-.contador{
-    font-size:25px;
-    text-align:center;
-    color:#ff1493;
+.nav-button:hover img {
+    transform: translateY(-3px) scale(1.05);
+
+    filter:
+        drop-shadow(0 0 5px white)
+        drop-shadow(0 0 20px white);
 }
 
-footer{
-    text-align:center;
-    background:#ff69b4;
-    color:white;
-    padding:20px;
-    margin-top:30px;
+/* =========================================================
+   MARQUEE
+========================================================= */
+
+.marquee {
+    overflow: hidden;
+    white-space: nowrap;
+
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+
+    background: #000;
+
+    font-family: "Press Start 2P", monospace;
+    font-size: 9px;
+
+    padding: 9px 0;
 }
 
-.marquee{
-    background:black;
-    color:#ff69b4;
-    padding:10px;
-    font-weight:bold;
+.marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 18s linear infinite;
 }
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* =========================================================
+   SEÇÕES
+========================================================= */
+
+.page {
+    display: none;
+    min-height: calc(100vh - 160px);
+    padding: 60px 7%;
+}
+
+.page.active {
+    display: block;
+    animation: fadeIn .4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   HOME
+========================================================= */
+
+.home {
+    min-height: 80vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    position: relative;
+}
+
+.home-content {
+    position: relative;
+    z-index: 3;
+}
+
+.home-logo {
+    width: min(420px, 80vw);
+    margin-bottom: 20px;
+
+    filter:
+        drop-shadow(0 0 5px white)
+        drop-shadow(0 0 20px rgba(255,255,255,.4));
+}
+
+.home h1 {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(35px, 8vw, 85px);
+    letter-spacing: 10px;
+    font-weight: 800;
+}
+
+.home h2 {
+    font-family: "Press Start 2P", monospace;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-top: 12px;
+}
+
+.home-decoration {
+    position: absolute;
+    pointer-events: none;
+}
+
+.home-decoration.star1 {
+    width: 90px;
+    left: 5%;
+    top: 10%;
+}
+
+.home-decoration.star2 {
+    width: 70px;
+    right: 7%;
+    top: 20%;
+}
+
+.home-decoration.bears {
+    width: 180px;
+    left: 4%;
+    bottom: 3%;
+}
+
+.home-decoration.phone {
+    width: 130px;
+    right: 5%;
+    bottom: 5%;
+}
+
+/* =========================================================
+   TÍTULOS
+========================================================= */
+
+.section-title {
+    font-family: "Press Start 2P", monospace;
+    font-size: clamp(17px, 3vw, 30px);
+
+    margin-bottom: 35px;
+
+    border-left: 5px solid white;
+    padding-left: 15px;
+
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-family: "Orbitron", sans-serif;
+    font-size: 13px;
+    opacity: .65;
+    margin-top: -25px;
+    margin-bottom: 35px;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.box {
+    background: rgba(0,0,0,.72);
+
+    border: 1px solid rgba(255,255,255,.7);
+
+    padding: 25px;
+
+    box-shadow:
+        0 0 15px rgba(255,255,255,.05),
+        inset 0 0 30px rgba(255,255,255,.025);
+
+    backdrop-filter: blur(8px);
+}
+
+/* =========================================================
+   MEMBERS
+========================================================= */
+
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.member {
+    border: 1px solid white;
+    background: #050505;
+    overflow: hidden;
+    transition: .3s ease;
+}
+
+.member:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 0 25px rgba(255,255,255,.25);
+}
+
+.member img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(100%);
+}
+
+.member-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.member-info h3 {
+    font-family: "Orbitron", sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.member-info p {
+    font-size: 10px;
+    opacity: .6;
+    margin-top: 7px;
+}
+
+/* =========================================================
+   ÁLBUM
+========================================================= */
+
+.album-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    align-items: center;
+}
+
+.album-cover {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: auto;
+
+    border: 1px solid white;
+
+    box-shadow: 0 0 35px rgba(255,255,255,.15);
+}
+
+.tracklist {
+    list-style: none;
+}
+
+.tracklist li {
+    padding: 14px 10px;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 13px;
+}
+
+.tracklist li span {
+    opacity: .45;
+    margin-right: 15px;
+}
+
+/* =========================================================
+   M/V
+========================================================= */
+
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+
+    margin: auto;
+
+    aspect-ratio: 16 / 9;
+
+    border: 1px solid white;
+    box-shadow: 0 0 35px rgba(255,255,255,.12);
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* =========================================================
+   GALERIA
+========================================================= */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.gallery img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    object-fit: cover;
+
+    border: 1px solid rgba(255,255,255,.7);
+
+    filter: grayscale(100%);
+
+    transition: .35s ease;
+}
+
+.gallery img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.025);
+    z-index: 3;
+    box-shadow: 0 0 25px rgba(255,255,255,.25);
+}
+
+/* =========================================================
+   PROJECT
+========================================================= */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.project-card {
+    min-height: 180px;
+    padding: 25px;
+
+    border: 1px solid white;
+    background: rgba(0,0,0,.7);
+}
+
+.project-card h3 {
+    font-family: "Orbitron", sans-serif;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.project-card p {
+    line-height: 1.7;
+    font-size: 13px;
+    opacity: .75;
+}
+
+/* =========================================================
+   NOW PLAYING
+========================================================= */
+
+.player-area {
+    min-height: 500px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,.6);
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,.08),
+            transparent 50%
+        ),
+        rgba(0,0,0,.75);
+}
+
+/* CONTAINER DO CD + CAPA */
+
+.cd-player {
+    width: 650px;
+    max-width: 95vw;
+
+    height: 350px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================================================
+   CD
+========================================================= */
+
+.cd {
+    position: absolute;
+
+    width: 320px;
+    height: 320px;
+
+    object-fit: contain;
+
+    left: 48%;
+
+    z-index: 1;
+
+    animation: spin 7s linear infinite;
+
+    filter:
+        drop-shadow(0 0 10px rgba(255,255,255,.18))
+        drop-shadow(0 0 30px rgba(255,255,255,.08));
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================================
+   CAPA DO CD
+========================================================= */
+
+.cd-cover {
+    position: absolute;
+
+    width: 330px;
+    height: 330px;
+
+    object-fit: cover;
+
+    left: 4%;
+
+    z-index: 3;
+
+    border: 1px solid white;
+
+    box-shadow:
+        0 0 20px rgba(255,255,255,.2),
+        10px 10px 30px rgba(0,0,0,.8);
+}
+
+/*
+   IMPORTANTE:
+
+   A capa fica na frente do CD.
+   O CD começa atrás dela e aparece pela direita,
+   criando o efeito de disco saindo do encarte.
+*/
+
+.player-info {
+    position: absolute;
+
+    right: 3%;
+    bottom: 25px;
+
+    width: 230px;
+
+    z-index: 5;
+
+    text-align: left;
+}
+
+.player-info .now {
+    font-family: "Press Start 2P", monospace;
+    font-size: 8px;
+
+    opacity: .5;
+
+    margin-bottom: 10px;
+}
+
+.player-info h3 {
+    font-family: "Orbitron", sans-serif;
+    font-size: 20px;
+
+    margin-bottom: 7px;
+}
+
+.player-info p {
+    font-size: 11px;
+    opacity: .55;
+}
+
+audio {
+    width: 100%;
+    margin-top: 18px;
+}
+
+/* =========================================================
+   CREDITS
+========================================================= */
+
+.credits {
+    max-width: 700px;
+    margin: auto;
+}
+
+.credit-line {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 16px 5px;
+
+    border-bottom: 1px solid rgba(255,255,255,.2);
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 12px;
+}
+
+.credit-line span:first-child {
+    opacity: .45;
+}
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+.links-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 25px;
+}
+
+.link-card {
+    width: 230px;
+    padding: 30px 20px;
+
+    text-align: center;
+
+    border: 1px solid white;
+
+    background: rgba(0,0,0,.75);
+
+    text-decoration: none;
+    color: white;
+
+    transition: .3s ease;
+}
+
+.link-card:hover {
+    background: white;
+    color: black;
+    transform: translateY(-6px);
+}
+
+.link-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.link-card h3 {
+    font-family: "Orbitron", sans-serif;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    border-top: 1px solid white;
+
+    text-align: center;
+
+    padding: 25px;
+
+    background: #000;
+
+    font-family: "Press Start 2P", monospace;
+    font-size: 7px;
+
+    opacity: .7;
+}
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .album-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .player-area {
+        min-height: 650px;
+    }
+
+    .cd-player {
+        height: 600px;
+    }
+
+    .cd-cover {
+        width: 280px;
+        height: 280px;
+        left: 50%;
+        transform: translateX(-55%);
+        top: 40px;
+    }
+
+    .cd {
+        width: 280px;
+        height: 280px;
+        left: 50%;
+        transform: translateX(5%);
+        top: 40px;
+    }
+
+    .player-info {
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 550px) {
+
+    header {
+        padding: 10px;
+    }
+
+    .logo {
+        height: 45px;
+    }
+
+    .status {
+        display: none;
+    }
+
+    nav {
+        top: 65px;
+    }
+
+    .nav-button img {
+        height: 30px;
+    }
+
+    .page {
+        padding: 40px 5%;
+    }
+
+    .members-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .member img {
+        height: 220px;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .home h1 {
+        letter-spacing: 4px;
+    }
+
+    .home-decoration {
+        opacity: .5;
+    }
+
+    .player-area {
+        min-height: 600px;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="marquee">
-<marquee>✨ Bem-vindo ao Hot Genes! ✨ Último ano da escola • Amizade para sempre • Terceirão 2026 💖</marquee>
-</div>
+<!-- ======================================================
+     HEADER
+====================================================== -->
 
 <header>
-<h1>💖 HOT GENES! 💖</h1>
-<p class="slogan">"Amigas para sempre, estrelas por acidente." ✨</p>
+
+    <img src="logo.png" class="logo">
+
+    <div class="status">
+        ● CHAT PROJECT ONLINE
+    </div>
+
 </header>
 
-<nav class="menu">
-<a href="#sobre">Sobre</a>
-<a href="#membros">Integrantes</a>
-<a href="#diario">Diário</a>
-<a href="#capsula">Cápsula do Tempo</a>
+
+<!-- ======================================================
+     MENU
+====================================================== -->
+
+<nav>
+
+    <button class="nav-button" onclick="showPage('home')">
+        <img src="home.png">
+    </button>
+
+    <button class="nav-button" onclick="showPage('members')">
+        <img src="hg_members.png">
+    </button>
+
+    <button class="nav-button" onclick="showPage('album')">
+        <img src="álbum.png">
+    </button>
+
+    <button class="nav-button" onclick="showPage('mv')">
+        <img src="mv.png">
+    </button>
+
+    <button class="nav-button" onclick="showPage('gallery')">
+        <img src="galeria.png">
+    </button>
+
+    <button class="nav-button" onclick="showPage('project')">
+        <img src="projeto.png">
+    </button>
+
+    <button class="nav-button" onclick="showPage('nowplaying')">
+        <img src="now_playing.png">
+    </button>
+
+    <button class="nav-button" onclick="showPage('credits')">
+        <img src="créditos.png">
+    </button>
+
+    <button class="nav-button" onclick="showPage('links')">
+        <img src="links.png">
+    </button>
+
 </nav>
 
-<div class="container">
 
-<div class="caixa contador">
-🌸 Visitante nº 000001 🌸
+<!-- ======================================================
+     MARQUEE
+====================================================== -->
+
+<div class="marquee">
+    <span>
+        ★ CHAT PROJECT ★ HOT GENES ★ CHAT ★ 길셋 ★ WELCOME TO CHAT ★ HOT GENES ★
+        CHAT PROJECT ★ HOT GENES ★ CHAT ★
+    </span>
 </div>
 
-<div class="caixa" id="sobre">
-<h2>💿 Sobre Nós</h2>
 
-<p>
-Somos o Hot Genes!
-Um grupo de amigos formado durante a escola.
-Criamos este site para guardar memórias do nosso terceirão,
-nossas fotos, nossas histórias e tudo que fez parte dessa fase.
-</p>
+<!-- ======================================================
+     HOME
+====================================================== -->
 
-<p>
-Talvez no futuro cada um esteja em um lugar diferente,
-mas este site sempre vai lembrar quem éramos hoje.
-💖
-</p>
-</div>
+<section id="home" class="page active home">
 
-<div class="caixa" id="membros">
-<h2>⭐ Integrantes ⭐</h2>
+    <img src="estrela1.png" class="home-decoration star1">
+    <img src="estrela2.png" class="home-decoration star2">
 
-<div class="membros">
+    <img src="ursos.png" class="home-decoration bears">
+    <img src="telefone.png" class="home-decoration phone">
 
-<div class="card">
-<h3>💖 Sthefany</h3>
-<p>Membro fundadora do Hot Genes!</p>
-</div>
+    <div class="home-content">
 
-<div class="card">
-<h3>🌸 Mariana</h3>
-<p>Responsável pelas melhores memórias.</p>
-</div>
+        <img src="logo.png" class="home-logo">
 
-<div class="card">
-<h3>🔥 Vitor</h3>
-<p>Membro lendário do grupo.</p>
-</div>
+        <h1>HOT GENES</h1>
 
-<div class="card">
-<h3>✨ Alice</h3>
-<p>Dona do pedaço.</p>
-</div>
+        <h2>CHAT PROJECT</h2>
 
-</div>
-</div>
+    </div>
 
-<div class="caixa" id="diario">
-<h2>📖 Diário do Terceirão</h2>
+</section>
 
-<ul>
-<li>Primeiro dia do ano.</li>
-<li>Provas impossíveis.</li>
-<li>Fotos nos corredores.</li>
-<li>Risadas durante as aulas.</li>
-<li>Último recreio.</li>
-<li>Formatura chegando...</li>
-</ul>
-</div>
 
-<div class="caixa" id="capsula">
-<h2>💌 Cápsula do Tempo</h2>
+<!-- ======================================================
+     MEMBERS
+====================================================== -->
 
-<p>
-Querido eu do futuro...
-</p>
+<section id="members" class="page">
 
-<p>
-Se você está lendo isso, lembre-se do Hot Genes.
-Lembre-se das conversas, das piadas internas,
-das fotos aleatórias e de todos os momentos que fizeram
-o terceirão ser especial.
-</p>
+    <h1 class="section-title">HG MEMBERS</h1>
 
-<p>
-Nunca esqueça de quem esteve ao seu lado.
-✨
-</p>
-</div>
+    <p class="subtitle">
+        meet the girls behind CHAT.
+    </p>
 
-<div class="caixa">
-<h2>🎵 Playlist 2026</h2>
+    <div class="members-grid">
 
-<p>
-Adicione aqui as músicas que marcaram o ano.
-</p>
-</div>
+        <div class="member">
+            <img src="alice1.jpg">
 
-</div>
+            <div class="member-info">
+                <h3>ALICE</h3>
+                <p>HOT GENES MEMBER</p>
+            </div>
+        </div>
 
-<footer>
-✨ HOT GENES FOREVER ✨<br>
-Terceirão • 2026 • Feito com 💖
-</footer>
 
-</body>
-                     </html>
+        <div class="member">
+            <img src="vitor1.jpg">
+
+            <div class="member-info">
+                <h3>VITOR</h3>
+                <p>HOT GENES MEMBER</p>
+            </div>
+        </div>
+
+
+        <div class="member">
+            <img src="mariana1.jpg">
+
+            <div class="member-info">
+                <h3>MARIANA</h3>
+                <p>HOT GENES MEMBER</p>
+            </div>
+        </div>
+
+
+        <div class="member">
+            <img src="sthefany2.jpg">
+
+            <div class="member-info">
+                <h3>STHEFANY</h3>
+                <p>HOT GENES MEMBER</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     ÁLBUM
+====================================================== -->
+
+<section id="album" class="page">
+
+    <h1 class="section-title">ÁLBUM</h1>
+
+    <p class="subtitle">
+        CHAT — HOT GENES
+    </p>
+
+    <div class="album-layout">
+
+        <div>
+
+            <img src="album_cover.png"
+                 class="album-cover"
+                 alt="CHAT Album Cover">
+
+        </div>
+
+
+        <div class="box">
+
+            <h2 style="
+                font-family:Orbitron;
+                margin-bottom:20px;
+            ">
+                CHAT
+            </h2>
+
+            <ul class="tracklist">
+
+                <li>
+                    <span>01</span>
+                    CHAT
+                </li>
+
+                <li>
+                    <span>02</span>
+                    CHAT — INST.
+                </li>
+
+                <li>
+                    <span>03</span>
+                    CHAT — REMIX
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     M/V
+====================================================== -->
+
+<section id="mv" class="page">
+
+    <h1 class="section-title">M/V</h1>
+
+    <p class="subtitle">
+        CHAT — MUSIC VIDEO
+    </p>
+
+    <div class="video-container">
+
+        <iframe
+            src="https://www.youtube.com/embed/DaXmLVEF_BM"
+            title="CHAT — HOT GENES"
+            allowfullscreen>
+        </iframe>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     GALLERY
+====================================================== -->
+
+<section id="gallery" class="page">
+
+    <h1 class="section-title">GALLERY</h1>
+
+    <p class="subtitle">
+        memories from CHAT.
+    </p>
+
+    <div class="gallery">
+
+        <img src="hotgenes1.jpg">
+        <img src="vitor2.jpg">
+        <img src="alice2.jpg">
+        <img src="mariana2.jpg">
+        <img src="hotgenes2.jpg">
+        <img src="hotgenes3.jpg">
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     PROJECT
+====================================================== -->
+
+<section id="project" class="page">
+
+    <h1 class="section-title">PROJECT</h1>
+
+    <p class="subtitle">
+        about CHAT.
+   
