@@ -1,22 +1,18 @@
-<!DOCTYPE html>
+                <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>HOT GENES — CHAT PROJECT</title>
+<title>CHAT PROJECT — HOT GENES</title>
 
 <style>
-
-/* =========================================================
-   HOT GENES — CHAT PROJECT
-   Y2K / 2000s DIGITAL WEBSITE
-   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Press+Start+2P&display=swap');
 
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 html{
@@ -24,1396 +20,1061 @@ html{
 }
 
 body{
-    margin:0;
-    background:#000;
-    color:#000;
+    background:#f4f4f4 url("fundo.jpg") center top / cover fixed no-repeat;
+    color:#111;
     font-family:Arial,Helvetica,sans-serif;
+    min-height:100vh;
 }
 
-/* =========================================================
-   FUNDO
-   ========================================================= */
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-
-    background:
-        linear-gradient(
-            rgba(255,255,255,.72),
-            rgba(255,255,255,.72)
-        ),
-        url("fundo.jpg");
-
-    background-size:cover;
-    background-position:center;
-
-    z-index:-2;
-}
-
-/* =========================================================
-   SITE
-   ========================================================= */
-
-.site{
-    width:min(1180px,96%);
-    margin:15px auto 40px;
-
-    background:rgba(255,255,255,.94);
-
-    border:3px solid #000;
-
-    box-shadow:
-        0 0 0 5px #fff,
-        0 0 0 8px #000,
-        0 15px 40px rgba(0,0,0,.5);
-}
-
-/* =========================================================
+/* =========================
    HEADER
-   ========================================================= */
+========================= */
 
 header{
-    background:#000;
-    color:#fff;
-
-    border-bottom:3px solid #fff;
+    background:rgba(255,255,255,.94);
+    border-bottom:4px solid #111;
+    position:sticky;
+    top:0;
+    z-index:999;
+    box-shadow:0 5px 20px rgba(0,0,0,.18);
 }
 
 .header-inner{
-    padding:15px 20px;
-
+    width:min(1200px,94%);
+    margin:auto;
+    min-height:100px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-
-    gap:20px;
+    gap:25px;
 }
 
-.header-logo{
-    width:190px;
-    max-width:40%;
-}
-
-.header-logo img{
-    width:100%;
-    display:block;
-}
-
-/* =========================================================
-   MENU
-   ========================================================= */
-
-nav{
-    display:grid;
-
-    grid-template-columns:
-        repeat(9,1fr);
-
-    gap:4px;
-
-    padding:7px;
-
-    background:#111;
-
-    border-bottom:3px solid #000;
-}
-
-nav a{
-    min-height:52px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    padding:5px;
-
-    background:
-        linear-gradient(
-            #fff,
-            #d8d8d8 45%,
-            #777 47%,
-            #111 52%,
-            #000
-        );
-
-    border:1px solid #fff;
-
-    box-shadow:
-        inset 0 0 0 1px #000;
-
-    transition:.15s;
-}
-
-nav a:hover{
-    transform:translateY(-3px);
-
-    filter:brightness(1.4);
-
-    box-shadow:
-        0 0 15px rgba(255,255,255,.8);
-}
-
-nav img{
-    max-width:100%;
-    max-height:40px;
-
+.logo{
+    width:180px;
+    max-width:30vw;
     object-fit:contain;
 }
 
-/* =========================================================
-   MARQUEE
-   ========================================================= */
-
-.marquee{
-    height:30px;
-
-    overflow:hidden;
-    white-space:nowrap;
-
-    background:#fff;
-    color:#000;
-
-    border-bottom:3px solid #000;
-
+nav{
     display:flex;
     align-items:center;
+    justify-content:flex-end;
+    flex-wrap:wrap;
+    gap:7px;
+}
+
+nav button{
+    border:0;
+    background:none;
+    cursor:pointer;
+    padding:2px;
+    transition:.2s;
+}
+
+nav button:hover{
+    transform:translateY(-4px) scale(1.04);
+}
+
+nav img{
+    width:75px;
+    height:38px;
+    object-fit:contain;
+}
+
+/* =========================
+   MARQUEE
+========================= */
+
+.marquee{
+    background:#111;
+    color:white;
+    overflow:hidden;
+    border-bottom:2px solid white;
+    font-family:"Press Start 2P",monospace;
+    font-size:10px;
+    padding:9px 0;
+    white-space:nowrap;
 }
 
 .marquee span{
     display:inline-block;
-
-    font-size:9px;
-    font-weight:bold;
-
-    letter-spacing:3px;
-
-    animation:
-        marquee 20s linear infinite;
+    padding-left:100%;
+    animation:marquee 20s linear infinite;
 }
 
 @keyframes marquee{
-
-    from{
-        transform:translateX(100%);
-    }
-
-    to{
-        transform:translateX(-100%);
-    }
-
+    from{transform:translateX(0)}
+    to{transform:translateX(-100%)}
 }
 
-/* =========================================================
+/* =========================
    MAIN
-   ========================================================= */
+========================= */
 
 main{
-    padding:18px;
+    width:min(1200px,94%);
+    margin:30px auto 70px;
 }
 
-/* =========================================================
+.page{
+    display:none;
+    animation:fade .35s ease;
+}
+
+.page.active{
+    display:block;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   TITLES
+========================= */
+
+.title{
+    background:white;
+    border:4px solid #111;
+    padding:20px;
+    margin-bottom:22px;
+    box-shadow:8px 8px 0 #111;
+}
+
+.title h1{
+    font-family:"Press Start 2P",monospace;
+    font-size:clamp(20px,4vw,40px);
+    line-height:1.4;
+}
+
+.title p{
+    margin-top:10px;
+    font-family:Orbitron,sans-serif;
+    font-weight:700;
+}
+
+/* =========================
    HOME
-   ========================================================= */
+========================= */
 
-.home{
+.home-grid{
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:22px;
+}
+
+.hero{
+    background:#fff;
+    border:4px solid #111;
+    min-height:470px;
+    padding:30px;
     position:relative;
-
-    min-height:600px;
-
     overflow:hidden;
-
-    border:3px solid #000;
-
-    background:
-        linear-gradient(
-            rgba(255,255,255,.55),
-            rgba(255,255,255,.55)
-        ),
-        url("fundo.jpg");
-
-    background-size:cover;
-    background-position:center;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    box-shadow:8px 8px 0 #000;
+    box-shadow:10px 10px 0 #111;
 }
 
-.home-content{
-    position:relative;
-
-    z-index:5;
-
-    padding:40px;
+.hero h2{
+    font-family:"Press Start 2P",monospace;
+    font-size:clamp(28px,6vw,65px);
+    line-height:1;
+    margin:20px 0;
 }
 
-.home-logo{
-    width:min(430px,80vw);
-
-    filter:
-        drop-shadow(0 0 8px #fff)
-        drop-shadow(7px 7px 0 #000);
+.hero-sub{
+    font-family:Orbitron,sans-serif;
+    font-size:15px;
+    font-weight:700;
+    max-width:550px;
+    line-height:1.7;
 }
 
-.home h1{
-    margin:15px 0 0;
-
-    font-size:
-        clamp(50px,9vw,105px);
-
-    line-height:.9;
-
-    font-weight:900;
-
-    letter-spacing:-5px;
-
-    text-shadow:
-        5px 5px 0 #fff,
-        9px 9px 0 #000;
-}
-
-.home-sub{
-    margin-top:25px;
-
-    font-size:12px;
-
-    font-weight:bold;
-
-    letter-spacing:5px;
-}
-
-/* DECORAÇÕES */
-
-.deco{
+.hero-logo{
     position:absolute;
-
-    object-fit:contain;
-
-    z-index:2;
-
-    pointer-events:none;
-
-    filter:
-        drop-shadow(0 0 5px #fff);
+    right:25px;
+    bottom:20px;
+    width:190px;
+    max-width:38%;
 }
 
-.bitches{
-    width:220px;
+.chat{
+    position:absolute;
+    width:150px;
+    right:10px;
+    top:15px;
+}
 
+.ursos{
+    position:absolute;
+    width:110px;
     left:20px;
     bottom:15px;
 }
 
-.bears{
-    width:150px;
-
-    right:25px;
-    bottom:15px;
-}
-
-.phone{
-    width:150px;
-
-    right:35px;
-    top:25px;
-}
-
-.star1{
-    width:75px;
-
-    left:40px;
-    top:35px;
-}
-
-.star2{
+.telefone{
+    position:absolute;
     width:100px;
+    right:200px;
+    bottom:10px;
+}
 
-    right:190px;
-    bottom:110px;
+.estrela1{
+    position:absolute;
+    width:45px;
+    left:45%;
+    top:20px;
+}
+
+.estrela2{
+    position:absolute;
+    width:50px;
+    left:60%;
+    bottom:25px;
 }
 
 .diva{
-    width:135px;
-
-    left:150px;
+    position:absolute;
+    width:100px;
+    left:30px;
     top:30px;
 }
 
 .camera{
-    width:125px;
-
-    right:170px;
-    top:80px;
-}
-
-.heart{
+    position:absolute;
     width:90px;
-
-    left:260px;
-    bottom:45px;
+    right:40px;
+    top:180px;
 }
 
-/* =========================================================
-   BOXES
-   ========================================================= */
-
-.box{
-    margin-top:35px;
-
-    padding:25px;
-
-    background:rgba(255,255,255,.96);
-
-    border:3px solid #000;
-
-    box-shadow:8px 8px 0 #000;
+.coracao{
+    position:absolute;
+    width:60px;
+    left:45%;
+    bottom:25px;
 }
 
-/* =========================================================
-   TITLES
-   ========================================================= */
-
-.title{
-    display:flex;
-
-    align-items:center;
-
-    gap:15px;
-
-    margin-bottom:25px;
+.home-side{
+    display:grid;
+    gap:22px;
 }
 
-.title-image{
-    height:55px;
-    max-width:260px;
+.info-card{
+    background:#fff;
+    border:4px solid #111;
+    padding:22px;
+    box-shadow:8px 8px 0 #111;
+}
 
+.info-card h3{
+    font-family:Orbitron,sans-serif;
+    margin-bottom:12px;
+    font-size:20px;
+}
+
+.info-card p{
+    line-height:1.6;
+}
+
+.small-img{
+    width:100%;
+    max-height:160px;
     object-fit:contain;
+    margin-top:15px;
 }
 
-.title-line{
-    flex:1;
-
-    height:3px;
-
-    background:#000;
-}
-
-/* =========================================================
+/* =========================
    MEMBERS
-   ========================================================= */
+========================= */
 
 .members{
     display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:15px;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
 }
 
 .member{
-    border:3px solid #000;
-
-    background:#fff;
-
-    padding:8px;
-
+    background:white;
+    border:4px solid #111;
+    padding:12px;
+    box-shadow:7px 7px 0 #111;
     transition:.2s;
 }
 
 .member:hover{
-    transform:translateY(-6px);
-
-    box-shadow:6px 6px 0 #000;
+    transform:translate(-3px,-3px);
+    box-shadow:10px 10px 0 #111;
 }
 
-.member-photo{
+.member img{
     width:100%;
-
-    aspect-ratio:1/1;
-
-    overflow:hidden;
-
-    border:2px solid #000;
-}
-
-.member-photo img{
-    width:100%;
-    height:100%;
-
+    aspect-ratio:1/1.15;
     object-fit:cover;
-
-    display:block;
+    border:3px solid #111;
 }
 
-.member-name{
-    text-align:center;
-
-    font-size:15px;
-
-    font-weight:900;
-
-    letter-spacing:2px;
-
-    padding:12px 4px 5px;
+.member h3{
+    font-family:"Press Start 2P",monospace;
+    font-size:13px;
+    margin-top:14px;
 }
 
-.member-number{
-    text-align:center;
-
-    font-size:8px;
-
-    letter-spacing:2px;
-
-    padding-bottom:8px;
+.member p{
+    margin-top:7px;
+    font-family:Orbitron,sans-serif;
+    font-size:11px;
 }
 
-/* =========================================================
-   ÁLBUM
-   ========================================================= */
+/* =========================
+   ALBUM
+========================= */
 
-.album-grid{
+.album-layout{
     display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:35px;
-
+    grid-template-columns:1fr 1fr;
+    gap:25px;
     align-items:center;
 }
 
-.album-cover{
-    max-width:480px;
-
-    margin:auto;
-
-    border:4px solid #000;
-
-    box-shadow:9px 9px 0 #000;
-
-    overflow:hidden;
+.album-card{
+    background:white;
+    border:4px solid #111;
+    padding:20px;
+    box-shadow:10px 10px 0 #111;
 }
 
-.album-cover img{
+.album-card img{
     width:100%;
-
     display:block;
 }
 
-.album-info h3{
-    margin:0;
-
-    font-size:38px;
-
-    letter-spacing:4px;
-}
-
-.album-info p{
-    font-size:13px;
-
-    line-height:1.8;
-}
-
-.tracklist{
-    margin-top:25px;
-
-    border-top:3px solid #000;
-}
-
-.track{
+.cd-preview{
     display:flex;
-
-    justify-content:space-between;
-
-    gap:10px;
-
-    padding:13px 5px;
-
-    border-bottom:1px dotted #000;
-
-    font-size:11px;
-
-    font-weight:bold;
+    align-items:center;
+    justify-content:center;
+    min-height:400px;
+    background:#111;
+    border:4px solid white;
+    overflow:hidden;
 }
 
-/* =========================================================
-   M/V
-   ========================================================= */
-
-.mv-title-image{
-    width:180px;
+.cd-preview img{
+    width:330px;
+    max-width:70%;
+    animation:spin 8s linear infinite;
 }
 
-.mv{
+@keyframes spin{
+    from{transform:rotate(0deg)}
+    to{transform:rotate(360deg)}
+}
+
+/* =========================
+   MV
+========================= */
+
+.mv-box{
+    background:#111;
+    padding:18px;
+    border:4px solid white;
+    box-shadow:10px 10px 0 #111;
+}
+
+.mv-box iframe{
     width:100%;
-
     aspect-ratio:16/9;
-
-    border:4px solid #000;
-
-    background:#000;
-}
-
-.mv iframe{
-    width:100%;
-    height:100%;
-
     border:0;
 }
 
 .mv-info{
-    margin-top:20px;
-
-    font-size:12px;
-
-    line-height:1.7;
+    background:white;
+    border:4px solid #111;
+    padding:22px;
+    margin-top:25px;
 }
 
-/* =========================================================
+.mv-info h2{
+    font-family:"Press Start 2P",monospace;
+    font-size:20px;
+    margin-bottom:15px;
+}
+
+/* =========================
    GALLERY
-   ========================================================= */
+========================= */
 
 .gallery{
     display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:12px;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
 }
 
 .gallery-item{
-    border:3px solid #000;
-
-    background:#000;
-
-    overflow:hidden;
-
-    aspect-ratio:1/1;
+    background:white;
+    padding:10px;
+    border:4px solid #111;
+    box-shadow:6px 6px 0 #111;
 }
 
 .gallery-item img{
+    display:block;
+    width:100%;
+    height:270px;
+    object-fit:cover;
+}
+
+.gallery-item p{
+    font-family:Orbitron,sans-serif;
+    font-weight:700;
+    font-size:11px;
+    padding:10px 3px 3px;
+}
+
+/* =========================
+   PROJECT
+========================= */
+
+.project-box{
+    background:white;
+    border:4px solid #111;
+    padding:30px;
+    box-shadow:10px 10px 0 #111;
+}
+
+.project-box img{
+    display:block;
+    width:180px;
+    margin:0 auto 25px;
+}
+
+.project-box h2{
+    font-family:"Press Start 2P",monospace;
+    text-align:center;
+    font-size:22px;
+    margin-bottom:20px;
+}
+
+.project-box p{
+    line-height:1.8;
+    text-align:center;
+    max-width:800px;
+    margin:auto;
+}
+
+.decor-strip{
+    display:grid;
+    grid-template-columns:repeat(8,1fr);
+    gap:12px;
+    margin-top:35px;
+    align-items:center;
+}
+
+.decor-strip img{
+    width:100%;
+    max-height:80px;
+    object-fit:contain;
+}
+
+/* =========================
+   NOW PLAYING
+========================= */
+
+.player{
+    background:#fff;
+    border:4px solid #111;
+    padding:30px;
+    box-shadow:10px 10px 0 #111;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:35px;
+    align-items:center;
+}
+
+.record-area{
+    min-height:430px;
+    background:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.record{
+    position:absolute;
+    width:330px;
+    height:330px;
+    right:7%;
+    border-radius:50%;
+    animation:spin 7s linear infinite;
+}
+
+.record img{
     width:100%;
     height:100%;
-
-    object-fit:cover;
-
-    display:block;
-
-    transition:.3s;
-}
-
-.gallery-item:hover img{
-    transform:scale(1.08);
-}
-
-/* =========================================================
-   PROJECT
-   ========================================================= */
-
-.project-grid{
-    display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:25px;
-
-    align-items:center;
-}
-
-.project-image{
-    border:3px solid #000;
-
-    overflow:hidden;
-
-    background:#000;
-}
-
-.project-image img{
-    width:100%;
-
-    display:block;
-}
-
-.project-text{
-    font-size:13px;
-
-    line-height:1.8;
-}
-
-/* =========================================================
-   NOW PLAYING
-   ========================================================= */
-
-.now-playing{
-    background:
-        linear-gradient(
-            135deg,
-            #fff,
-            #d8d8d8
-        );
-}
-
-.player-layout{
-    display:grid;
-
-    grid-template-columns:
-        1.2fr 1fr;
-
-    gap:25px;
-
-    align-items:center;
-}
-
-/* PALCO DO CD */
-
-.cd-stage{
-    position:relative;
-
-    width:100%;
-
-    height:380px;
-
-    overflow:hidden;
-}
-
-/* CD */
-
-.cd{
-    position:absolute;
-
-    width:330px;
-    height:330px;
-
     object-fit:contain;
-
-    top:25px;
-
-    left:48%;
-
-    z-index:1;
-
-    animation:
-        spin 7s linear infinite;
 }
 
-/* CAPA */
-
-.cd-cover{
-    position:absolute;
-
-    width:330px;
-    height:330px;
-
-    object-fit:cover;
-
-    top:25px;
-
-    left:15%;
-
-    z-index:3;
-
-    border:4px solid #000;
-
-    box-shadow:
-        8px 8px 0 rgba(0,0,0,.35);
+.cover{
+    width:235px;
+    position:relative;
+    z-index:2;
+    transform:translateX(-65px);
+    box-shadow:0 15px 30px rgba(0,0,0,.5);
 }
 
-/*
-   A capa fica na frente.
-   O CD fica atrás e aparece para
-   o lado direito.
-*/
-
-@keyframes spin{
-
-    from{
-        transform:rotate(0deg);
-    }
-
-    to{
-        transform:rotate(360deg);
-    }
-
+.player-info h2{
+    font-family:"Press Start 2P",monospace;
+    font-size:24px;
+    line-height:1.5;
 }
 
-/* PLAYER INFO */
-
-.player-info{
-    border:3px solid #000;
-
-    padding:25px;
-
-    background:#fff;
-}
-
-.now-label{
-    font-size:9px;
-
-    font-weight:bold;
-
-    letter-spacing:4px;
-}
-
-.song-title{
-    font-size:34px;
-
-    font-weight:900;
-
-    margin:12px 0;
-
-    letter-spacing:3px;
-}
-
-.song-artist{
-    font-size:12px;
-
-    margin-bottom:20px;
+.player-info h3{
+    font-family:Orbitron,sans-serif;
+    margin:15px 0 20px;
 }
 
 audio{
     width:100%;
+    margin-top:20px;
 }
 
-/* =========================================================
+/* =========================
    CREDITS
-   ========================================================= */
+========================= */
 
-.credits-top{
+.credits{
+    background:white;
+    border:4px solid #111;
+    padding:40px;
+    box-shadow:10px 10px 0 #111;
     text-align:center;
+}
 
+.credits img{
+    max-width:300px;
+    width:80%;
     margin-bottom:25px;
 }
 
-.credits-top img{
-    width:230px;
-
-    max-width:70%;
+.credits h2{
+    font-family:"Press Start 2P",monospace;
+    margin-bottom:20px;
 }
 
-.credit-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:12px;
-}
-
-.credit{
-    border:2px solid #000;
-
-    padding:18px;
-
-    background:#fff;
-
-    font-size:12px;
-}
-
-.credit strong{
-    display:block;
-
-    font-size:9px;
-
-    letter-spacing:3px;
-
-    margin-bottom:8px;
-}
-
-/* =========================================================
-   LINKS
-   ========================================================= */
-
-.links-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:12px;
-}
-
-.site-link{
-    display:flex;
-
-    min-height:100px;
-
-    align-items:center;
-    justify-content:center;
-
-    padding:15px;
-
-    border:3px solid #000;
-
-    background:#fff;
-
-    transition:.2s;
-}
-
-.site-link:hover{
-    background:#000;
-
-    transform:translateY(-5px);
-
-    box-shadow:5px 5px 0 #888;
-}
-
-.site-link img{
-    max-width:85%;
-    max-height:70px;
-
-    object-fit:contain;
-}
-
-.site-link:hover img{
-    filter:invert(1);
-}
-
-/* =========================================================
-   EXTRA ASSETS
-   ========================================================= */
-
-.asset-showcase{
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    flex-wrap:wrap;
-
-    gap:15px;
-
-    margin-top:25px;
-
-    padding:20px;
-
-    border:2px dashed #000;
-}
-
-.asset-showcase img{
-    max-width:130px;
-    max-height:100px;
-
-    object-fit:contain;
-}
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-footer{
-    margin-top:45px;
-
-    padding:35px 15px;
-
-    background:#000;
-
-    color:#fff;
-
-    text-align:center;
-
-    font-size:9px;
-
-    letter-spacing:3px;
-
+.credits p{
+    font-family:Orbitron,sans-serif;
     line-height:2;
 }
 
-/* =========================================================
-   RESPONSIVO
-   ========================================================= */
+/* =========================
+   LINKS
+========================= */
+
+.links-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.link-card{
+    background:white;
+    border:4px solid #111;
+    box-shadow:7px 7px 0 #111;
+    padding:20px;
+    text-align:center;
+}
+
+.link-card img{
+    height:70px;
+    max-width:100%;
+    object-fit:contain;
+    margin-bottom:12px;
+}
+
+.link-card a{
+    color:#111;
+    text-decoration:none;
+    font-family:Orbitron,sans-serif;
+    font-weight:900;
+    word-break:break-word;
+}
+
+.link-card a:hover{
+    text-decoration:underline;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:25px;
+    font-family:"Press Start 2P",monospace;
+    font-size:9px;
+    line-height:2;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:900px){
 
+    .header-inner{
+        flex-direction:column;
+        padding:15px 0;
+    }
+
     nav{
-        grid-template-columns:
-            repeat(3,1fr);
+        justify-content:center;
     }
 
-    .members{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .album-grid,
-    .project-grid,
-    .player-layout{
+    .home-grid,
+    .album-layout,
+    .player{
         grid-template-columns:1fr;
     }
 
+    .members{
+        grid-template-columns:repeat(2,1fr);
+    }
+
     .gallery{
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
     }
 
     .links-grid{
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
     }
 
+    .decor-strip{
+        grid-template-columns:repeat(4,1fr);
+    }
 }
 
 @media(max-width:600px){
 
-    .site{
-        width:calc(100% - 12px);
-    }
-
-    main{
-        padding:10px;
-    }
-
-    .box{
-        padding:15px;
-
-        box-shadow:5px 5px 0 #000;
-    }
-
-    .header-inner{
-        flex-direction:column;
-    }
-
-    .header-logo{
-        max-width:70%;
-    }
-
-    nav{
-        grid-template-columns:
-            repeat(3,1fr);
-    }
-
-    nav a{
-        min-height:45px;
-    }
-
     nav img{
-        max-height:32px;
+        width:60px;
+        height:32px;
     }
 
-    .home{
-        min-height:500px;
-    }
-
-    .home-content{
-        padding:20px;
-    }
-
-    .home h1{
-        font-size:58px;
-    }
-
-    .deco{
-        opacity:.55;
-    }
-
-    .bitches{
-        width:130px;
-    }
-
-    .bears{
-        width:100px;
-    }
-
-    .phone{
-        width:100px;
-    }
-
-    .diva{
-        width:90px;
-    }
-
-    .camera{
-        width:85px;
-    }
-
-    .cd-stage{
-        height:280px;
-    }
-
-    .cd,
-    .cd-cover{
-        width:240px;
-        height:240px;
-    }
-
-    .cd{
-        left:45%;
-    }
-
-    .cd-cover{
-        left:2%;
-    }
-
-    .gallery{
-        grid-template-columns:1fr;
-    }
-
+    .members,
+    .gallery,
     .links-grid{
         grid-template-columns:1fr;
     }
 
-    .credit-grid{
-        grid-template-columns:1fr;
+    .hero{
+        min-height:520px;
     }
 
+    .hero-logo{
+        max-width:45%;
+    }
+
+    .record-area{
+        min-height:350px;
+    }
+
+    .record{
+        width:270px;
+        height:270px;
+        right:-20px;
+    }
+
+    .cover{
+        width:190px;
+        transform:translateX(-55px);
+    }
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<div class="site">
-
-
-<!-- =====================================================
-     HEADER
-     ===================================================== -->
-
 <header>
-
     <div class="header-inner">
 
-        <div class="header-logo">
+        <!-- 1/30 -->
+        <img src="logo.png" class="logo" alt="HOT GENES">
 
-            <img
-                src="logo.png"
-                alt="HOT GENES"
-            >
+        <nav>
 
-        </div>
+            <!-- 2/30 -->
+            <button onclick="showPage('home')">
+                <img src="home.png" alt="Home">
+            </button>
 
+            <!-- 3/30 -->
+            <button onclick="showPage('members')">
+                <img src="hg_members.png" alt="HG Members">
+            </button>
+
+            <!-- 4/30 -->
+            <button onclick="showPage('album')">
+                <img src="álbum.png" alt="Álbum">
+            </button>
+
+            <!-- 5/30 -->
+            <button onclick="showPage('mv')">
+                <img src="mv.png" alt="M/V">
+            </button>
+
+            <!-- 6/30 -->
+            <button onclick="showPage('gallery')">
+                <img src="galeria.png" alt="Galeria">
+            </button>
+
+            <!-- 7/30 -->
+            <button onclick="showPage('project')">
+                <img src="projeto.png" alt="Projeto">
+            </button>
+
+            <!-- 8/30 -->
+            <button onclick="showPage('nowplaying')">
+                <img src="now_playing.png" alt="Now Playing">
+            </button>
+
+            <!-- 9/30 -->
+            <button onclick="showPage('credits')">
+                <img src="créditos.png" alt="Créditos">
+            </button>
+
+            <!-- 10/30 -->
+            <button onclick="showPage('links')">
+                <img src="links.png" alt="Links">
+            </button>
+
+        </nav>
     </div>
 
+    <div class="marquee">
+        <span>★ CHAT PROJECT ★ HOT GENES ★ WELCOME TO OUR WORLD ★ CHAT ★ HOT GENES ★</span>
+    </div>
 </header>
-
-
-<!-- =====================================================
-     MENU COM TODOS OS PNGS DE NAVEGAÇÃO
-     ===================================================== -->
-
-<nav>
-
-    <a href="#home">
-        <img src="home.png" alt="HOME">
-    </a>
-
-    <a href="#members">
-        <img src="hg_members.png" alt="HG MEMBERS">
-    </a>
-
-    <a href="#album">
-        <img src="álbum.png" alt="ÁLBUM">
-    </a>
-
-    <a href="#mv">
-        <img src="mv.png" alt="M/V">
-    </a>
-
-    <a href="#gallery">
-        <img src="galeria.png" alt="GALLERY">
-    </a>
-
-    <a href="#project">
-        <img src="projeto.png" alt="PROJECT">
-    </a>
-
-    <a href="#playing">
-        <img src="now_playing.png" alt="NOW PLAYING">
-    </a>
-
-    <a href="#credits">
-        <img src="créditos.png" alt="CREDITS">
-    </a>
-
-    <a href="#links">
-        <img src="links.png" alt="LINKS">
-    </a>
-
-</nav>
-
-
-<!-- =====================================================
-     MARQUEE
-     ===================================================== -->
-
-<div class="marquee">
-
-    <span>
-        ★ HOT GENES ★ CHAT PROJECT ★ GIRLSET 길셋 ★
-        WELCOME TO THE OFFICIAL DIGITAL SPACE ★
-        HOT GENES ★ CHAT ★
-    </span>
-
-</div>
 
 
 <main>
 
-
 <!-- =====================================================
      HOME
-     ===================================================== -->
+===================================================== -->
 
-<section id="home" class="home">
+<section id="home" class="page active">
 
-
-    <!-- TODOS OS ELEMENTOS DECORATIVOS -->
-
-    <img
-        class="deco bitches"
-        src="chat_bitches.png"
-        alt=""
-    >
-
-    <img
-        class="deco bears"
-        src="ursos.png"
-        alt=""
-    >
-
-    <img
-        class="deco phone"
-        src="telefone.png"
-        alt=""
-    >
-
-    <img
-        class="deco star1"
-        src="estrela1.png"
-        alt=""
-    >
-
-    <img
-        class="deco star2"
-        src="estrela2.png"
-        alt=""
-    >
-
-    <img
-        class="deco diva"
-        src="diva.png"
-        alt=""
-    >
-
-    <img
-        class="deco camera"
-        src="câmera.png"
-        alt=""
-    >
-
-    <img
-        class="deco heart"
-        src="coração.png"
-        alt=""
-    >
-
-
-    <div class="home-content">
-
-        <img
-            class="home-logo"
-            src="logo.png"
-            alt="HOT GENES"
-        >
-
-        <h1>CHAT</h1>
-
-        <div class="home-sub">
-            HOT GENES PROJECT / 2026
-        </div>
-
+    <div class="title">
+        <h1>CHAT PROJECT</h1>
+        <p>HOT GENES OFFICIAL PROJECT SITE</p>
     </div>
 
+    <div class="home-grid">
 
+        <div class="hero">
+
+            <!-- 11/30 -->
+            <img src="chat_bitches.png" class="chat" alt="CHAT">
+
+            <!-- 12/30 -->
+            <img src="ursos.png" class="ursos" alt="Ursos">
+
+            <!-- 13/30 -->
+            <img src="telefone.png" class="telefone" alt="Telefone">
+
+            <!-- 14/30 -->
+            <img src="estrela1.png" class="estrela1" alt="Estrela">
+
+            <!-- 15/30 -->
+            <img src="estrela2.png" class="estrela2" alt="Estrela">
+
+            <!-- 16/30 -->
+            <img src="diva.png" class="diva" alt="Diva">
+
+            <!-- 17/30 -->
+            <img src="câmera.png" class="camera" alt="Câmera">
+
+            <!-- 18/30 -->
+            <img src="coração.png" class="coracao" alt="Coração">
+
+            <h2>HOT<br>GENES</h2>
+
+            <p class="hero-sub">
+                WELCOME TO THE CHAT PROJECT.
+                UM PROJETO FEITO POR NÓS,
+                PARA NÓS, COM MUITO AMOR,
+                MÚSICA, FOTOS E MEMÓRIAS.
+            </p>
+
+            <!-- 19/30 -->
+            <img src="logo.png" class="hero-logo" alt="HOT GENES LOGO">
+
+        </div>
+
+        <div class="home-side">
+
+            <div class="info-card">
+                <h3>WELCOME ★</h3>
+                <p>
+                    Este é o espaço oficial do projeto
+                    <strong>CHAT / HOT GENES</strong>.
+                    Explore nossas fotos, integrantes,
+                    álbum, M/V, projeto e muito mais.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3>PROJECT STATUS</h3>
+                <p>
+                    ● PROJECT: CHAT<br>
+                    ● GROUP: HOT GENES<br>
+                    ● ERA: 2000s / Y2K<br>
+                    ● STATUS: ACTIVE
+                </p>
+
+                <!-- 20/30 -->
+                <img src="mv.png" class="small-img" alt="M/V">
+            </div>
+
+        </div>
+    </div>
 </section>
 
 
 <!-- =====================================================
-     HG MEMBERS
-     ===================================================== -->
+     MEMBERS
+===================================================== -->
 
-<section id="members" class="box">
-
+<section id="members" class="page">
 
     <div class="title">
-
-        <img
-            class="title-image"
-            src="hg_members.png"
-            alt="HG MEMBERS"
-        >
-
-        <div class="title-line"></div>
-
+        <h1>HG MEMBERS</h1>
+        <p>MEET THE MEMBERS OF HOT GENES</p>
     </div>
-
 
     <div class="members">
 
+        <div class="member">
+            <img src="alice1.jpg" alt="Alice">
+            <h3>ALICE</h3>
+            <p>HOT GENES MEMBER</p>
+        </div>
 
-        <article class="member">
+        <div class="member">
+            <img src="vitor1.jpg" alt="Vitor">
+            <h3>VITOR</h3>
+            <p>HOT GENES MEMBER</p>
+        </div>
 
-            <div class="member-photo">
+        <div class="member">
+            <img src="mariana1.jpg" alt="Mariana">
+            <h3>MARIANA</h3>
+            <p>HOT GENES MEMBER</p>
+        </div>
 
-                <img
-                    src="alice1.jpg"
-                    alt="Alice"
-                >
-
-            </div>
-
-            <div class="member-name">
-                ALICE
-            </div>
-
-            <div class="member-number">
-                HG MEMBER 01
-            </div>
-
-        </article>
-
-
-        <article class="member">
-
-            <div class="member-photo">
-
-                <img
-                    src="vitor1.jpg"
-                    alt="Vitor"
-                >
-
-            </div>
-
-            <div class="member-name">
-                VITOR
-            </div>
-
-            <div class="member-number">
-                HG MEMBER 02
-            </div>
-
-        </article>
-
-
-        <article class="member">
-
-            <div class="member-photo">
-
-                <img
-                    src="mariana1.jpg"
-                    alt="Mariana"
-                >
-
-            </div>
-
-            <div class="member-name">
-                MARIANA
-            </div>
-
-            <div class="member-number">
-                HG MEMBER 03
-            </div>
-
-        </article>
-
-
-        <article class="member">
-
-            <div class="member-photo">
-
-                <img
-                    src="sthefany2.jpg"
-                    alt="Sthefany"
-                >
-
-            </div>
-
-            <div class="member-name">
-                STHEFANY
-            </div>
-
-            <div class="member-number">
-                HG MEMBER 04
-            </div>
-
-        </article>
-
+        <div class="member">
+            <img src="sthefany2.jpg" alt="Sthefany">
+            <h3>STHEFANY</h3>
+            <p>HOT GENES MEMBER</p>
+        </div>
 
     </div>
 
+    <div class="info-card" style="margin-top:25px;">
+        <h3>HOT GENES</h3>
 
-    <!-- FOTO EXTRA DOS MEMBERS -->
-
-    <div class="asset-showcase">
+        <p>
+            Quatro pessoas, um projeto e muitas memórias.
+            Este site reúne os registros da nossa era CHAT.
+        </p>
 
         <img
             src="hotgenes1.jpg"
             alt="HOT GENES"
+            style="
+                width:100%;
+                max-height:450px;
+                object-fit:cover;
+                margin-top:20px;
+                border:3px solid #111;
+            "
         >
-
     </div>
-
 
 </section>
 
 
 <!-- =====================================================
-     ÁLBUM
-     ===================================================== -->
+     ALBUM
+===================================================== -->
 
-<section id="album" class="box">
-
+<section id="album" class="page">
 
     <div class="title">
-
-        <img
-            class="title-image"
-            src="álbum.png"
-            alt="ÁLBUM"
-        >
-
-        <div class="title-line"></div>
-
+        <h1>ÁLBUM</h1>
+        <p>CHAT — HOT GENES</p>
     </div>
 
+    <div class="album-layout">
 
-    <div class="album-grid">
+        <div class="album-card">
 
-
-        <div class="album-cover">
-
-            <img
-                src="album_cover.png"
-                alt="CHAT album cover"
-            >
+            <!-- 21/30 -->
+            <img src="album_cover.png" alt="CHAT Album Cover">
 
         </div>
 
+        <div class="cd-preview">
 
-        <div class="album-info">
+            <!-- 22/30 -->
+            <img src="cd.png" alt="CHAT CD">
 
-            <h3>CHAT</h3>
+        </div>
 
-            <p>
+    </div>
 
-                HOT GENES apresenta o projeto
-                <strong>CHAT</strong>.
+    <div class="info-card" style="margin-top:25px;">
+        <h3>CHAT</h3>
+        <p>
+            HOT GENES — CHAT PROJECT.
+            Um registro visual e musical do nosso projeto.
+        </p>
+    </div>
 
-            </p>
+</section>
 
-            <p>
 
-                Um projeto au
+<!-- =====================================================
+     M/V
+===================================================== -->
+
+<section id="mv" class="page">
+
+    <div class="title">
+        <h1>M/V</h1>
+        <p>HOT GENES — CHAT</p>
+    </div>
+
+    <div class="mv-box">
+
+        <iframe
+            src="https://www.youtube.com/embed/DaXmLVEF_BM"
+            title="HOT GENES — CHAT"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+
+    </div>
+
+    <div class="mv-info">
+
+        <h2>CHAT — M/V</h2>
+
+        <p>
+            Confira o nosso M/V oficial do projeto CHAT.
+        </p>
+
+        <br>
+
+        <a
+            href="https://youtu.be/DaXmLVEF_BM?si=juKT3zLLI6y3keHR"
+            target="_blank"
+            style="
+                color:#111;
+                font-family:Orbitron,sans-serif;
+                font-weight:900;
+            "
+        >
+            WATCH ON YOUTUBE →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+
+<section id="gallery" class="page">
+
+    <div class="title">
+        <h1>GALLERY</h1>
+        <p>HOT GENES PHOTO ARCHIVE</p>
+    </div>
+
+    <div class="gallery">
+
+        <div class="gallery-item">
+            <img src="hotgenes1.jpg" alt="HOT GENES 01">
+            <p>HOT GENES — 001</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="vitor2.jpg" alt="Vitor 02">
+            <p>VITOR — 002</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="alice2.jpg" alt="Alice 02">
+            <p>ALICE — 003</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="mariana2.jpg" alt="Mariana 02">
+            <p>MARIANA — 004</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="hotgenes2.jpg" alt="HOT GENES 02">
+            <p>HOT GENES — 005</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="hotgenes3.jpg" alt="HOT GENES 03">
+            <p>HOT GENES — 006</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PROJECT
+===================================================== -->
+
+<section id="project" class="page">
+
+    <div class="title">
+        <h1>PROJECT</h1>
+        <p>ABOUT CHAT / HOT GENES</p>
+    </div>
+
+    <div class="project-box">
+
+        <!-- 23/30 -->
+        <img src="projeto.png" alt="Projeto">
+
+        <h2>CHAT PROJECT</h2>
+
+        <p>
+            CHAT é um projeto criado pelo HOT GENES,
+            reunindo música, performance, fotografia,
+            vídeo e toda a estética que representa
+            o nosso grupo.
+        </p>
+
+        <div class="decor-strip">
+
+            <!-- 24/30 -->
+  
