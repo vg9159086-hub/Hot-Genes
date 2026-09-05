@@ -1,1103 +1,1419 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CHAT PROJECT — HOT GENES</title>
+<title>HOT GENES — CHAT PROJECT</title>
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Press+Start+2P&display=swap');
+/* =========================================================
+   HOT GENES — CHAT PROJECT
+   Y2K / 2000s DIGITAL WEBSITE
+   ========================================================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    background: #000;
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
-    overflow-x: hidden;
+body{
+    margin:0;
+    background:#000;
+    color:#000;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 /* =========================================================
    FUNDO
-========================================================= */
+   ========================================================= */
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-        linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.65)),
-        url("fundo.jpg") center / cover no-repeat;
-    z-index: -3;
-}
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
 
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
     background:
-        repeating-linear-gradient(
-            0deg,
-            transparent 0px,
-            transparent 3px,
-            rgba(255,255,255,.025) 4px
-        );
-    pointer-events: none;
-    z-index: 999;
+        linear-gradient(
+            rgba(255,255,255,.72),
+            rgba(255,255,255,.72)
+        ),
+        url("fundo.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    z-index:-2;
 }
 
 /* =========================================================
-   TOPO
-========================================================= */
+   SITE
+   ========================================================= */
 
-header {
-    width: 100%;
-    padding: 15px 25px;
+.site{
+    width:min(1180px,96%);
+    margin:15px auto 40px;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background:rgba(255,255,255,.94);
 
-    background: rgba(0,0,0,.82);
-    border-bottom: 1px solid rgba(255,255,255,.4);
+    border:3px solid #000;
 
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(12px);
+    box-shadow:
+        0 0 0 5px #fff,
+        0 0 0 8px #000,
+        0 15px 40px rgba(0,0,0,.5);
 }
 
-.logo {
-    height: 65px;
-    width: auto;
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+header{
+    background:#000;
+    color:#fff;
+
+    border-bottom:3px solid #fff;
 }
 
-.status {
-    font-family: "Press Start 2P", monospace;
-    font-size: 8px;
-    letter-spacing: 1px;
+.header-inner{
+    padding:15px 20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:20px;
+}
+
+.header-logo{
+    width:190px;
+    max-width:40%;
+}
+
+.header-logo img{
+    width:100%;
+    display:block;
 }
 
 /* =========================================================
    MENU
-========================================================= */
+   ========================================================= */
 
-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+nav{
+    display:grid;
 
-    gap: 10px;
-    padding: 14px;
+    grid-template-columns:
+        repeat(9,1fr);
 
-    background: rgba(0,0,0,.88);
-    border-bottom: 1px solid #fff;
+    gap:4px;
 
-    position: sticky;
-    top: 95px;
-    z-index: 90;
+    padding:7px;
+
+    background:#111;
+
+    border-bottom:3px solid #000;
 }
 
-.nav-button {
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    padding: 0;
-    transition: .25s ease;
+nav a{
+    min-height:52px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:5px;
+
+    background:
+        linear-gradient(
+            #fff,
+            #d8d8d8 45%,
+            #777 47%,
+            #111 52%,
+            #000
+        );
+
+    border:1px solid #fff;
+
+    box-shadow:
+        inset 0 0 0 1px #000;
+
+    transition:.15s;
 }
 
-.nav-button img {
-    height: 38px;
-    width: auto;
-    display: block;
+nav a:hover{
+    transform:translateY(-3px);
 
-    filter:
-        drop-shadow(0 0 3px white)
-        drop-shadow(0 0 10px rgba(255,255,255,.25));
+    filter:brightness(1.4);
 
-    transition: .25s ease;
+    box-shadow:
+        0 0 15px rgba(255,255,255,.8);
 }
 
-.nav-button:hover img {
-    transform: translateY(-3px) scale(1.05);
+nav img{
+    max-width:100%;
+    max-height:40px;
 
-    filter:
-        drop-shadow(0 0 5px white)
-        drop-shadow(0 0 20px white);
+    object-fit:contain;
 }
 
 /* =========================================================
    MARQUEE
-========================================================= */
+   ========================================================= */
 
-.marquee {
-    overflow: hidden;
-    white-space: nowrap;
+.marquee{
+    height:30px;
 
-    border-bottom: 1px solid white;
-    border-top: 1px solid white;
+    overflow:hidden;
+    white-space:nowrap;
 
-    background: #000;
+    background:#fff;
+    color:#000;
 
-    font-family: "Press Start 2P", monospace;
-    font-size: 9px;
+    border-bottom:3px solid #000;
 
-    padding: 9px 0;
+    display:flex;
+    align-items:center;
 }
 
-.marquee span {
-    display: inline-block;
-    padding-left: 100%;
-    animation: marquee 18s linear infinite;
+.marquee span{
+    display:inline-block;
+
+    font-size:9px;
+    font-weight:bold;
+
+    letter-spacing:3px;
+
+    animation:
+        marquee 20s linear infinite;
 }
 
-@keyframes marquee {
-    from {
-        transform: translateX(0);
+@keyframes marquee{
+
+    from{
+        transform:translateX(100%);
     }
 
-    to {
-        transform: translateX(-100%);
+    to{
+        transform:translateX(-100%);
     }
+
 }
 
 /* =========================================================
-   SEÇÕES
-========================================================= */
+   MAIN
+   ========================================================= */
 
-.page {
-    display: none;
-    min-height: calc(100vh - 160px);
-    padding: 60px 7%;
-}
-
-.page.active {
-    display: block;
-    animation: fadeIn .4s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+main{
+    padding:18px;
 }
 
 /* =========================================================
    HOME
-========================================================= */
+   ========================================================= */
 
-.home {
-    min-height: 80vh;
+.home{
+    position:relative;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    min-height:600px;
 
-    text-align: center;
-    position: relative;
+    overflow:hidden;
+
+    border:3px solid #000;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,.55),
+            rgba(255,255,255,.55)
+        ),
+        url("fundo.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    box-shadow:8px 8px 0 #000;
 }
 
-.home-content {
-    position: relative;
-    z-index: 3;
+.home-content{
+    position:relative;
+
+    z-index:5;
+
+    padding:40px;
 }
 
-.home-logo {
-    width: min(420px, 80vw);
-    margin-bottom: 20px;
+.home-logo{
+    width:min(430px,80vw);
 
     filter:
-        drop-shadow(0 0 5px white)
-        drop-shadow(0 0 20px rgba(255,255,255,.4));
+        drop-shadow(0 0 8px #fff)
+        drop-shadow(7px 7px 0 #000);
 }
 
-.home h1 {
-    font-family: "Orbitron", sans-serif;
-    font-size: clamp(35px, 8vw, 85px);
-    letter-spacing: 10px;
-    font-weight: 800;
+.home h1{
+    margin:15px 0 0;
+
+    font-size:
+        clamp(50px,9vw,105px);
+
+    line-height:.9;
+
+    font-weight:900;
+
+    letter-spacing:-5px;
+
+    text-shadow:
+        5px 5px 0 #fff,
+        9px 9px 0 #000;
 }
 
-.home h2 {
-    font-family: "Press Start 2P", monospace;
-    font-size: 12px;
-    letter-spacing: 3px;
-    margin-top: 12px;
+.home-sub{
+    margin-top:25px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    letter-spacing:5px;
 }
 
-.home-decoration {
-    position: absolute;
-    pointer-events: none;
+/* DECORAÇÕES */
+
+.deco{
+    position:absolute;
+
+    object-fit:contain;
+
+    z-index:2;
+
+    pointer-events:none;
+
+    filter:
+        drop-shadow(0 0 5px #fff);
 }
 
-.home-decoration.star1 {
-    width: 90px;
-    left: 5%;
-    top: 10%;
+.bitches{
+    width:220px;
+
+    left:20px;
+    bottom:15px;
 }
 
-.home-decoration.star2 {
-    width: 70px;
-    right: 7%;
-    top: 20%;
+.bears{
+    width:150px;
+
+    right:25px;
+    bottom:15px;
 }
 
-.home-decoration.bears {
-    width: 180px;
-    left: 4%;
-    bottom: 3%;
+.phone{
+    width:150px;
+
+    right:35px;
+    top:25px;
 }
 
-.home-decoration.phone {
-    width: 130px;
-    right: 5%;
-    bottom: 5%;
+.star1{
+    width:75px;
+
+    left:40px;
+    top:35px;
+}
+
+.star2{
+    width:100px;
+
+    right:190px;
+    bottom:110px;
+}
+
+.diva{
+    width:135px;
+
+    left:150px;
+    top:30px;
+}
+
+.camera{
+    width:125px;
+
+    right:170px;
+    top:80px;
+}
+
+.heart{
+    width:90px;
+
+    left:260px;
+    bottom:45px;
 }
 
 /* =========================================================
-   TÍTULOS
-========================================================= */
+   BOXES
+   ========================================================= */
 
-.section-title {
-    font-family: "Press Start 2P", monospace;
-    font-size: clamp(17px, 3vw, 30px);
+.box{
+    margin-top:35px;
 
-    margin-bottom: 35px;
+    padding:25px;
 
-    border-left: 5px solid white;
-    padding-left: 15px;
+    background:rgba(255,255,255,.96);
 
-    text-transform: uppercase;
-}
+    border:3px solid #000;
 
-.subtitle {
-    font-family: "Orbitron", sans-serif;
-    font-size: 13px;
-    opacity: .65;
-    margin-top: -25px;
-    margin-bottom: 35px;
+    box-shadow:8px 8px 0 #000;
 }
 
 /* =========================================================
-   CARDS
-========================================================= */
+   TITLES
+   ========================================================= */
 
-.box {
-    background: rgba(0,0,0,.72);
+.title{
+    display:flex;
 
-    border: 1px solid rgba(255,255,255,.7);
+    align-items:center;
 
-    padding: 25px;
+    gap:15px;
 
-    box-shadow:
-        0 0 15px rgba(255,255,255,.05),
-        inset 0 0 30px rgba(255,255,255,.025);
+    margin-bottom:25px;
+}
 
-    backdrop-filter: blur(8px);
+.title-image{
+    height:55px;
+    max-width:260px;
+
+    object-fit:contain;
+}
+
+.title-line{
+    flex:1;
+
+    height:3px;
+
+    background:#000;
 }
 
 /* =========================================================
    MEMBERS
-========================================================= */
+   ========================================================= */
 
-.members-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+.members{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
 }
 
-.member {
-    border: 1px solid white;
-    background: #050505;
-    overflow: hidden;
-    transition: .3s ease;
+.member{
+    border:3px solid #000;
+
+    background:#fff;
+
+    padding:8px;
+
+    transition:.2s;
 }
 
-.member:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 0 25px rgba(255,255,255,.25);
+.member:hover{
+    transform:translateY(-6px);
+
+    box-shadow:6px 6px 0 #000;
 }
 
-.member img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(100%);
+.member-photo{
+    width:100%;
+
+    aspect-ratio:1/1;
+
+    overflow:hidden;
+
+    border:2px solid #000;
 }
 
-.member-info {
-    padding: 15px;
-    text-align: center;
+.member-photo img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
 }
 
-.member-info h3 {
-    font-family: "Orbitron", sans-serif;
-    font-size: 20px;
-    letter-spacing: 2px;
+.member-name{
+    text-align:center;
+
+    font-size:15px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    padding:12px 4px 5px;
 }
 
-.member-info p {
-    font-size: 10px;
-    opacity: .6;
-    margin-top: 7px;
+.member-number{
+    text-align:center;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    padding-bottom:8px;
 }
 
 /* =========================================================
    ÁLBUM
-========================================================= */
+   ========================================================= */
 
-.album-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 35px;
-    align-items: center;
+.album-grid{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:35px;
+
+    align-items:center;
 }
 
-.album-cover {
-    width: 100%;
-    max-width: 500px;
-    display: block;
-    margin: auto;
+.album-cover{
+    max-width:480px;
 
-    border: 1px solid white;
+    margin:auto;
 
-    box-shadow: 0 0 35px rgba(255,255,255,.15);
+    border:4px solid #000;
+
+    box-shadow:9px 9px 0 #000;
+
+    overflow:hidden;
 }
 
-.tracklist {
-    list-style: none;
+.album-cover img{
+    width:100%;
+
+    display:block;
 }
 
-.tracklist li {
-    padding: 14px 10px;
-    border-bottom: 1px solid rgba(255,255,255,.2);
+.album-info h3{
+    margin:0;
 
-    font-family: "Orbitron", sans-serif;
-    font-size: 13px;
+    font-size:38px;
+
+    letter-spacing:4px;
 }
 
-.tracklist li span {
-    opacity: .45;
-    margin-right: 15px;
+.album-info p{
+    font-size:13px;
+
+    line-height:1.8;
+}
+
+.tracklist{
+    margin-top:25px;
+
+    border-top:3px solid #000;
+}
+
+.track{
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding:13px 5px;
+
+    border-bottom:1px dotted #000;
+
+    font-size:11px;
+
+    font-weight:bold;
 }
 
 /* =========================================================
    M/V
-========================================================= */
+   ========================================================= */
 
-.video-container {
-    position: relative;
-    width: 100%;
-    max-width: 1000px;
-
-    margin: auto;
-
-    aspect-ratio: 16 / 9;
-
-    border: 1px solid white;
-    box-shadow: 0 0 35px rgba(255,255,255,.12);
+.mv-title-image{
+    width:180px;
 }
 
-.video-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
+.mv{
+    width:100%;
+
+    aspect-ratio:16/9;
+
+    border:4px solid #000;
+
+    background:#000;
+}
+
+.mv iframe{
+    width:100%;
+    height:100%;
+
+    border:0;
+}
+
+.mv-info{
+    margin-top:20px;
+
+    font-size:12px;
+
+    line-height:1.7;
 }
 
 /* =========================================================
-   GALERIA
-========================================================= */
+   GALLERY
+   ========================================================= */
 
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+.gallery{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
 }
 
-.gallery img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
+.gallery-item{
+    border:3px solid #000;
 
-    object-fit: cover;
+    background:#000;
 
-    border: 1px solid rgba(255,255,255,.7);
+    overflow:hidden;
 
-    filter: grayscale(100%);
-
-    transition: .35s ease;
+    aspect-ratio:1/1;
 }
 
-.gallery img:hover {
-    filter: grayscale(0%);
-    transform: scale(1.025);
-    z-index: 3;
-    box-shadow: 0 0 25px rgba(255,255,255,.25);
+.gallery-item img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:.3s;
+}
+
+.gallery-item:hover img{
+    transform:scale(1.08);
 }
 
 /* =========================================================
    PROJECT
-========================================================= */
+   ========================================================= */
 
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+.project-grid{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:25px;
+
+    align-items:center;
 }
 
-.project-card {
-    min-height: 180px;
-    padding: 25px;
+.project-image{
+    border:3px solid #000;
 
-    border: 1px solid white;
-    background: rgba(0,0,0,.7);
+    overflow:hidden;
+
+    background:#000;
 }
 
-.project-card h3 {
-    font-family: "Orbitron", sans-serif;
-    font-size: 20px;
-    margin-bottom: 15px;
+.project-image img{
+    width:100%;
+
+    display:block;
 }
 
-.project-card p {
-    line-height: 1.7;
-    font-size: 13px;
-    opacity: .75;
+.project-text{
+    font-size:13px;
+
+    line-height:1.8;
 }
 
 /* =========================================================
    NOW PLAYING
-========================================================= */
+   ========================================================= */
 
-.player-area {
-    min-height: 500px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: relative;
-    overflow: hidden;
-
-    border: 1px solid rgba(255,255,255,.6);
+.now-playing{
     background:
-        radial-gradient(
-            circle at center,
-            rgba(255,255,255,.08),
-            transparent 50%
-        ),
-        rgba(0,0,0,.75);
+        linear-gradient(
+            135deg,
+            #fff,
+            #d8d8d8
+        );
 }
 
-/* CONTAINER DO CD + CAPA */
+.player-layout{
+    display:grid;
 
-.cd-player {
-    width: 650px;
-    max-width: 95vw;
+    grid-template-columns:
+        1.2fr 1fr;
 
-    height: 350px;
+    gap:25px;
 
-    position: relative;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items:center;
 }
 
-/* =========================================================
-   CD
-========================================================= */
+/* PALCO DO CD */
 
-.cd {
-    position: absolute;
+.cd-stage{
+    position:relative;
 
-    width: 320px;
-    height: 320px;
+    width:100%;
 
-    object-fit: contain;
+    height:380px;
 
-    left: 48%;
-
-    z-index: 1;
-
-    animation: spin 7s linear infinite;
-
-    filter:
-        drop-shadow(0 0 10px rgba(255,255,255,.18))
-        drop-shadow(0 0 30px rgba(255,255,255,.08));
+    overflow:hidden;
 }
 
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
+/* CD */
 
-    to {
-        transform: rotate(360deg);
-    }
+.cd{
+    position:absolute;
+
+    width:330px;
+    height:330px;
+
+    object-fit:contain;
+
+    top:25px;
+
+    left:48%;
+
+    z-index:1;
+
+    animation:
+        spin 7s linear infinite;
 }
 
-/* =========================================================
-   CAPA DO CD
-========================================================= */
+/* CAPA */
 
-.cd-cover {
-    position: absolute;
+.cd-cover{
+    position:absolute;
 
-    width: 330px;
-    height: 330px;
+    width:330px;
+    height:330px;
 
-    object-fit: cover;
+    object-fit:cover;
 
-    left: 4%;
+    top:25px;
 
-    z-index: 3;
+    left:15%;
 
-    border: 1px solid white;
+    z-index:3;
+
+    border:4px solid #000;
 
     box-shadow:
-        0 0 20px rgba(255,255,255,.2),
-        10px 10px 30px rgba(0,0,0,.8);
+        8px 8px 0 rgba(0,0,0,.35);
 }
 
 /*
-   IMPORTANTE:
-
-   A capa fica na frente do CD.
-   O CD começa atrás dela e aparece pela direita,
-   criando o efeito de disco saindo do encarte.
+   A capa fica na frente.
+   O CD fica atrás e aparece para
+   o lado direito.
 */
 
-.player-info {
-    position: absolute;
+@keyframes spin{
 
-    right: 3%;
-    bottom: 25px;
+    from{
+        transform:rotate(0deg);
+    }
 
-    width: 230px;
+    to{
+        transform:rotate(360deg);
+    }
 
-    z-index: 5;
-
-    text-align: left;
 }
 
-.player-info .now {
-    font-family: "Press Start 2P", monospace;
-    font-size: 8px;
+/* PLAYER INFO */
 
-    opacity: .5;
+.player-info{
+    border:3px solid #000;
 
-    margin-bottom: 10px;
+    padding:25px;
+
+    background:#fff;
 }
 
-.player-info h3 {
-    font-family: "Orbitron", sans-serif;
-    font-size: 20px;
+.now-label{
+    font-size:9px;
 
-    margin-bottom: 7px;
+    font-weight:bold;
+
+    letter-spacing:4px;
 }
 
-.player-info p {
-    font-size: 11px;
-    opacity: .55;
+.song-title{
+    font-size:34px;
+
+    font-weight:900;
+
+    margin:12px 0;
+
+    letter-spacing:3px;
 }
 
-audio {
-    width: 100%;
-    margin-top: 18px;
+.song-artist{
+    font-size:12px;
+
+    margin-bottom:20px;
+}
+
+audio{
+    width:100%;
 }
 
 /* =========================================================
    CREDITS
-========================================================= */
+   ========================================================= */
 
-.credits {
-    max-width: 700px;
-    margin: auto;
+.credits-top{
+    text-align:center;
+
+    margin-bottom:25px;
 }
 
-.credit-line {
-    display: flex;
-    justify-content: space-between;
+.credits-top img{
+    width:230px;
 
-    padding: 16px 5px;
-
-    border-bottom: 1px solid rgba(255,255,255,.2);
-
-    font-family: "Orbitron", sans-serif;
-    font-size: 12px;
+    max-width:70%;
 }
 
-.credit-line span:first-child {
-    opacity: .45;
+.credit-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:12px;
+}
+
+.credit{
+    border:2px solid #000;
+
+    padding:18px;
+
+    background:#fff;
+
+    font-size:12px;
+}
+
+.credit strong{
+    display:block;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    margin-bottom:8px;
 }
 
 /* =========================================================
    LINKS
-========================================================= */
+   ========================================================= */
 
-.links-grid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+.links-grid{
+    display:grid;
 
-    gap: 25px;
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
 }
 
-.link-card {
-    width: 230px;
-    padding: 30px 20px;
+.site-link{
+    display:flex;
 
-    text-align: center;
+    min-height:100px;
 
-    border: 1px solid white;
+    align-items:center;
+    justify-content:center;
 
-    background: rgba(0,0,0,.75);
+    padding:15px;
 
-    text-decoration: none;
-    color: white;
+    border:3px solid #000;
 
-    transition: .3s ease;
+    background:#fff;
+
+    transition:.2s;
 }
 
-.link-card:hover {
-    background: white;
-    color: black;
-    transform: translateY(-6px);
+.site-link:hover{
+    background:#000;
+
+    transform:translateY(-5px);
+
+    box-shadow:5px 5px 0 #888;
 }
 
-.link-card img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    margin-bottom: 15px;
+.site-link img{
+    max-width:85%;
+    max-height:70px;
+
+    object-fit:contain;
 }
 
-.link-card h3 {
-    font-family: "Orbitron", sans-serif;
+.site-link:hover img{
+    filter:invert(1);
+}
+
+/* =========================================================
+   EXTRA ASSETS
+   ========================================================= */
+
+.asset-showcase{
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    margin-top:25px;
+
+    padding:20px;
+
+    border:2px dashed #000;
+}
+
+.asset-showcase img{
+    max-width:130px;
+    max-height:100px;
+
+    object-fit:contain;
 }
 
 /* =========================================================
    FOOTER
-========================================================= */
+   ========================================================= */
 
-footer {
-    border-top: 1px solid white;
+footer{
+    margin-top:45px;
 
-    text-align: center;
+    padding:35px 15px;
 
-    padding: 25px;
+    background:#000;
 
-    background: #000;
+    color:#fff;
 
-    font-family: "Press Start 2P", monospace;
-    font-size: 7px;
+    text-align:center;
 
-    opacity: .7;
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    line-height:2;
 }
 
 /* =========================================================
    RESPONSIVO
-========================================================= */
+   ========================================================= */
 
-@media (max-width: 900px) {
+@media(max-width:900px){
 
-    .members-grid {
-        grid-template-columns: repeat(2, 1fr);
+    nav{
+        grid-template-columns:
+            repeat(3,1fr);
     }
 
-    .album-layout {
-        grid-template-columns: 1fr;
+    .members{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-    .gallery {
-        grid-template-columns: repeat(2, 1fr);
+    .album-grid,
+    .project-grid,
+    .player-layout{
+        grid-template-columns:1fr;
     }
 
-    .project-grid {
-        grid-template-columns: 1fr;
+    .gallery{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-    .player-area {
-        min-height: 650px;
+    .links-grid{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-    .cd-player {
-        height: 600px;
-    }
-
-    .cd-cover {
-        width: 280px;
-        height: 280px;
-        left: 50%;
-        transform: translateX(-55%);
-        top: 40px;
-    }
-
-    .cd {
-        width: 280px;
-        height: 280px;
-        left: 50%;
-        transform: translateX(5%);
-        top: 40px;
-    }
-
-    .player-info {
-        right: auto;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: 20px;
-    }
 }
 
-@media (max-width: 550px) {
+@media(max-width:600px){
 
-    header {
-        padding: 10px;
+    .site{
+        width:calc(100% - 12px);
     }
 
-    .logo {
-        height: 45px;
+    main{
+        padding:10px;
     }
 
-    .status {
-        display: none;
+    .box{
+        padding:15px;
+
+        box-shadow:5px 5px 0 #000;
     }
 
-    nav {
-        top: 65px;
+    .header-inner{
+        flex-direction:column;
     }
 
-    .nav-button img {
-        height: 30px;
+    .header-logo{
+        max-width:70%;
     }
 
-    .page {
-        padding: 40px 5%;
+    nav{
+        grid-template-columns:
+            repeat(3,1fr);
     }
 
-    .members-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
+    nav a{
+        min-height:45px;
     }
 
-    .member img {
-        height: 220px;
+    nav img{
+        max-height:32px;
     }
 
-    .gallery {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
+    .home{
+        min-height:500px;
     }
 
-    .home h1 {
-        letter-spacing: 4px;
+    .home-content{
+        padding:20px;
     }
 
-    .home-decoration {
-        opacity: .5;
+    .home h1{
+        font-size:58px;
     }
 
-    .player-area {
-        min-height: 600px;
+    .deco{
+        opacity:.55;
     }
+
+    .bitches{
+        width:130px;
+    }
+
+    .bears{
+        width:100px;
+    }
+
+    .phone{
+        width:100px;
+    }
+
+    .diva{
+        width:90px;
+    }
+
+    .camera{
+        width:85px;
+    }
+
+    .cd-stage{
+        height:280px;
+    }
+
+    .cd,
+    .cd-cover{
+        width:240px;
+        height:240px;
+    }
+
+    .cd{
+        left:45%;
+    }
+
+    .cd-cover{
+        left:2%;
+    }
+
+    .gallery{
+        grid-template-columns:1fr;
+    }
+
+    .links-grid{
+        grid-template-columns:1fr;
+    }
+
+    .credit-grid{
+        grid-template-columns:1fr;
+    }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<!-- ======================================================
+
+<div class="site">
+
+
+<!-- =====================================================
      HEADER
-====================================================== -->
+     ===================================================== -->
 
 <header>
 
-    <img src="logo.png" class="logo">
+    <div class="header-inner">
 
-    <div class="status">
-        ● CHAT PROJECT ONLINE
+        <div class="header-logo">
+
+            <img
+                src="logo.png"
+                alt="HOT GENES"
+            >
+
+        </div>
+
     </div>
 
 </header>
 
 
-<!-- ======================================================
-     MENU
-====================================================== -->
+<!-- =====================================================
+     MENU COM TODOS OS PNGS DE NAVEGAÇÃO
+     ===================================================== -->
 
 <nav>
 
-    <button class="nav-button" onclick="showPage('home')">
-        <img src="home.png">
-    </button>
+    <a href="#home">
+        <img src="home.png" alt="HOME">
+    </a>
 
-    <button class="nav-button" onclick="showPage('members')">
-        <img src="hg_members.png">
-    </button>
+    <a href="#members">
+        <img src="hg_members.png" alt="HG MEMBERS">
+    </a>
 
-    <button class="nav-button" onclick="showPage('album')">
-        <img src="álbum.png">
-    </button>
+    <a href="#album">
+        <img src="álbum.png" alt="ÁLBUM">
+    </a>
 
-    <button class="nav-button" onclick="showPage('mv')">
-        <img src="mv.png">
-    </button>
+    <a href="#mv">
+        <img src="mv.png" alt="M/V">
+    </a>
 
-    <button class="nav-button" onclick="showPage('gallery')">
-        <img src="galeria.png">
-    </button>
+    <a href="#gallery">
+        <img src="galeria.png" alt="GALLERY">
+    </a>
 
-    <button class="nav-button" onclick="showPage('project')">
-        <img src="projeto.png">
-    </button>
+    <a href="#project">
+        <img src="projeto.png" alt="PROJECT">
+    </a>
 
-    <button class="nav-button" onclick="showPage('nowplaying')">
-        <img src="now_playing.png">
-    </button>
+    <a href="#playing">
+        <img src="now_playing.png" alt="NOW PLAYING">
+    </a>
 
-    <button class="nav-button" onclick="showPage('credits')">
-        <img src="créditos.png">
-    </button>
+    <a href="#credits">
+        <img src="créditos.png" alt="CREDITS">
+    </a>
 
-    <button class="nav-button" onclick="showPage('links')">
-        <img src="links.png">
-    </button>
+    <a href="#links">
+        <img src="links.png" alt="LINKS">
+    </a>
 
 </nav>
 
 
-<!-- ======================================================
+<!-- =====================================================
      MARQUEE
-====================================================== -->
+     ===================================================== -->
 
 <div class="marquee">
+
     <span>
-        ★ CHAT PROJECT ★ HOT GENES ★ CHAT ★ 길셋 ★ WELCOME TO CHAT ★ HOT GENES ★
-        CHAT PROJECT ★ HOT GENES ★ CHAT ★
+        ★ HOT GENES ★ CHAT PROJECT ★ GIRLSET 길셋 ★
+        WELCOME TO THE OFFICIAL DIGITAL SPACE ★
+        HOT GENES ★ CHAT ★
     </span>
+
 </div>
 
 
-<!-- ======================================================
+<main>
+
+
+<!-- =====================================================
      HOME
-====================================================== -->
+     ===================================================== -->
 
-<section id="home" class="page active home">
+<section id="home" class="home">
 
-    <img src="estrela1.png" class="home-decoration star1">
-    <img src="estrela2.png" class="home-decoration star2">
 
-    <img src="ursos.png" class="home-decoration bears">
-    <img src="telefone.png" class="home-decoration phone">
+    <!-- TODOS OS ELEMENTOS DECORATIVOS -->
+
+    <img
+        class="deco bitches"
+        src="chat_bitches.png"
+        alt=""
+    >
+
+    <img
+        class="deco bears"
+        src="ursos.png"
+        alt=""
+    >
+
+    <img
+        class="deco phone"
+        src="telefone.png"
+        alt=""
+    >
+
+    <img
+        class="deco star1"
+        src="estrela1.png"
+        alt=""
+    >
+
+    <img
+        class="deco star2"
+        src="estrela2.png"
+        alt=""
+    >
+
+    <img
+        class="deco diva"
+        src="diva.png"
+        alt=""
+    >
+
+    <img
+        class="deco camera"
+        src="câmera.png"
+        alt=""
+    >
+
+    <img
+        class="deco heart"
+        src="coração.png"
+        alt=""
+    >
+
 
     <div class="home-content">
 
-        <img src="logo.png" class="home-logo">
+        <img
+            class="home-logo"
+            src="logo.png"
+            alt="HOT GENES"
+        >
 
-        <h1>HOT GENES</h1>
+        <h1>CHAT</h1>
 
-        <h2>CHAT PROJECT</h2>
-
-    </div>
-
-</section>
-
-
-<!-- ======================================================
-     MEMBERS
-====================================================== -->
-
-<section id="members" class="page">
-
-    <h1 class="section-title">HG MEMBERS</h1>
-
-    <p class="subtitle">
-        meet the girls behind CHAT.
-    </p>
-
-    <div class="members-grid">
-
-        <div class="member">
-            <img src="alice1.jpg">
-
-            <div class="member-info">
-                <h3>ALICE</h3>
-                <p>HOT GENES MEMBER</p>
-            </div>
-        </div>
-
-
-        <div class="member">
-            <img src="vitor1.jpg">
-
-            <div class="member-info">
-                <h3>VITOR</h3>
-                <p>HOT GENES MEMBER</p>
-            </div>
-        </div>
-
-
-        <div class="member">
-            <img src="mariana1.jpg">
-
-            <div class="member-info">
-                <h3>MARIANA</h3>
-                <p>HOT GENES MEMBER</p>
-            </div>
-        </div>
-
-
-        <div class="member">
-            <img src="sthefany2.jpg">
-
-            <div class="member-info">
-                <h3>STHEFANY</h3>
-                <p>HOT GENES MEMBER</p>
-            </div>
+        <div class="home-sub">
+            HOT GENES PROJECT / 2026
         </div>
 
     </div>
 
+
 </section>
 
 
-<!-- ======================================================
+<!-- =====================================================
+     HG MEMBERS
+     ===================================================== -->
+
+<section id="members" class="box">
+
+
+    <div class="title">
+
+        <img
+            class="title-image"
+            src="hg_members.png"
+            alt="HG MEMBERS"
+        >
+
+        <div class="title-line"></div>
+
+    </div>
+
+
+    <div class="members">
+
+
+        <article class="member">
+
+            <div class="member-photo">
+
+                <img
+                    src="alice1.jpg"
+                    alt="Alice"
+                >
+
+            </div>
+
+            <div class="member-name">
+                ALICE
+            </div>
+
+            <div class="member-number">
+                HG MEMBER 01
+            </div>
+
+        </article>
+
+
+        <article class="member">
+
+            <div class="member-photo">
+
+                <img
+                    src="vitor1.jpg"
+                    alt="Vitor"
+                >
+
+            </div>
+
+            <div class="member-name">
+                VITOR
+            </div>
+
+            <div class="member-number">
+                HG MEMBER 02
+            </div>
+
+        </article>
+
+
+        <article class="member">
+
+            <div class="member-photo">
+
+                <img
+                    src="mariana1.jpg"
+                    alt="Mariana"
+                >
+
+            </div>
+
+            <div class="member-name">
+                MARIANA
+            </div>
+
+            <div class="member-number">
+                HG MEMBER 03
+            </div>
+
+        </article>
+
+
+        <article class="member">
+
+            <div class="member-photo">
+
+                <img
+                    src="sthefany2.jpg"
+                    alt="Sthefany"
+                >
+
+            </div>
+
+            <div class="member-name">
+                STHEFANY
+            </div>
+
+            <div class="member-number">
+                HG MEMBER 04
+            </div>
+
+        </article>
+
+
+    </div>
+
+
+    <!-- FOTO EXTRA DOS MEMBERS -->
+
+    <div class="asset-showcase">
+
+        <img
+            src="hotgenes1.jpg"
+            alt="HOT GENES"
+        >
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
      ÁLBUM
-====================================================== -->
+     ===================================================== -->
 
-<section id="album" class="page">
+<section id="album" class="box">
 
-    <h1 class="section-title">ÁLBUM</h1>
 
-    <p class="subtitle">
-        CHAT — HOT GENES
-    </p>
+    <div class="title">
 
-    <div class="album-layout">
+        <img
+            class="title-image"
+            src="álbum.png"
+            alt="ÁLBUM"
+        >
 
-        <div>
+        <div class="title-line"></div>
 
-            <img src="album_cover.png"
-                 class="album-cover"
-                 alt="CHAT Album Cover">
+    </div>
+
+
+    <div class="album-grid">
+
+
+        <div class="album-cover">
+
+            <img
+                src="album_cover.png"
+                alt="CHAT album cover"
+            >
 
         </div>
 
 
-        <div class="box">
+        <div class="album-info">
 
-            <h2 style="
-                font-family:Orbitron;
-                margin-bottom:20px;
-            ">
-                CHAT
-            </h2>
+            <h3>CHAT</h3>
 
-            <ul class="tracklist">
+            <p>
 
-                <li>
-                    <span>01</span>
-                    CHAT
-                </li>
+                HOT GENES apresenta o projeto
+                <strong>CHAT</strong>.
 
-                <li>
-                    <span>02</span>
-                    CHAT — INST.
-                </li>
+            </p>
 
-                <li>
-                    <span>03</span>
-                    CHAT — REMIX
-                </li>
+            <p>
 
-            </ul>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ======================================================
-     M/V
-====================================================== -->
-
-<section id="mv" class="page">
-
-    <h1 class="section-title">M/V</h1>
-
-    <p class="subtitle">
-        CHAT — MUSIC VIDEO
-    </p>
-
-    <div class="video-container">
-
-        <iframe
-            src="https://www.youtube.com/embed/DaXmLVEF_BM"
-            title="CHAT — HOT GENES"
-            allowfullscreen>
-        </iframe>
-
-    </div>
-
-</section>
-
-
-<!-- ======================================================
-     GALLERY
-====================================================== -->
-
-<section id="gallery" class="page">
-
-    <h1 class="section-title">GALLERY</h1>
-
-    <p class="subtitle">
-        memories from CHAT.
-    </p>
-
-    <div class="gallery">
-
-        <img src="hotgenes1.jpg">
-        <img src="vitor2.jpg">
-        <img src="alice2.jpg">
-        <img src="mariana2.jpg">
-        <img src="hotgenes2.jpg">
-        <img src="hotgenes3.jpg">
-
-    </div>
-
-</section>
-
-
-<!-- ======================================================
-     PROJECT
-====================================================== -->
-
-<section id="project" class="page">
-
-    <h1 class="section-title">PROJECT</h1>
-
-    <p class="subtitle">
-        about CHAT.
-   
+                Um projeto au
